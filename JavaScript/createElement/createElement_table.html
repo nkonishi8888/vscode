@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>createElementでテーブル生成</title>
+</head>
+<body>
+  <!-- テーブルを表示するためのコンテナ -->
+  <div id="tableContainer"></div>
+
+  <script>
+    // テーブル要素を作成
+    const table = document.createElement('table');
+    table.border = '1'; // 枠線を表示
+
+    // ヘッダー行を作成
+    const headerRow = document.createElement('tr'); // ヘッダー行の<tr>を作成
+    const headers = ['名前', '年齢', '職業']; // ヘッダーの項目
+    headers.forEach(text => {
+      const th = document.createElement('th'); // ヘッダーセル<th>を作成
+      th.textContent = text; // テキストを設定
+      headerRow.appendChild(th); // ヘッダー行に追加
+    });
+    table.appendChild(headerRow); // テーブルにヘッダー行を追加
+
+    // データ行を作成
+    const data = [
+      { name: '小西', age: 30, job: 'エンジニア' },
+      { name: '佐藤', age: 28, job: 'デザイナー' }
+    ]; // 表示するデータ
+
+    data.forEach(person => {
+      const row = document.createElement('tr'); // データ行<tr>を作成
+      Object.values(person).forEach(value => {
+        const td = document.createElement('td'); // データセル<td>を作成
+        td.textContent = value; // テキストを設定
+        row.appendChild(td); // 行にセルを追加
+      });
+      table.appendChild(row); // テーブルにデータ行を追加
+    });
+
+    // テーブルを画面に追加
+    document.getElementById('tableContainer').appendChild(table);
+  </script>
+</body>
+</html>
